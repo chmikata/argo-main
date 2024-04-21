@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sub-app
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: test-project
+  sources:
+    - repoURL: https://github.com/chmikata/argo-sub1.git
+      path: apps
+      targetRevision: main
+    - repoURL: https://github.com/chmikata/argo-sub2.git
+      path: apps
+      targetRevision: main
+  syncPolicy:
+    automated: {}

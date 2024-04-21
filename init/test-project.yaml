@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: test-project
+  namespace: argocd
+spec:
+  description: test project
+  sourceRepos:
+    - "https://github.com/chmikata/argo-main.git"
+    - "https://github.com/chmikata/argo-sub1.git"
+    - "https://github.com/chmikata/argo-sub2.git"
+  destinations:
+    - namespace: "*"
+      server: "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
